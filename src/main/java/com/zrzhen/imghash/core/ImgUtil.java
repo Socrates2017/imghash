@@ -135,92 +135,11 @@ public class ImgUtil {
         return array;
     }
 
-
-    /**
-     * 汉明距离
-     */
-    public static int hammingDistance(String s1, String s2) {
-        int counter = 0;
-        for (int i = 0; i < s1.length(); i++) {
-            if (s1.charAt(i) != s2.charAt(i)) {
-                counter++;
-            }
-        }
-        return counter;
-    }
-
-    public static String dHash(int[] pixels) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < pixels.length - 1; i++) {
-            boolean d = compareGrey(pixels[i], pixels[i + 1]);
-            if (d) {
-                stringBuilder.append("1");
-            } else {
-                stringBuilder.append("0");
-            }
-        }
-        return stringBuilder.toString();
-    }
-
     public static boolean compareGrey(int current, int next) {
         if (current > next) {
             return true;
         }
         return false;
     }
-
-
-    public static String imgDHash(String path) throws IOException {
-        //原图
-        BufferedImage srcImg = path2Img(path);
-        //缩小后的原图
-        BufferedImage resideImg = resize(srcImg, 9, 8);
-        //缩小后的灰度图
-        BufferedImage resideImgGrayImg = img2Gray(resideImg);
-        int[] imgGrayArray = img2Array(resideImgGrayImg);
-        String hash1 = dHash(imgGrayArray);
-        return hash1;
-    }
-
-    public static String imgAHash(String path) throws IOException {
-        //原图
-        BufferedImage srcImg = path2Img(path);
-        //缩小后的原图
-        BufferedImage resideImg = resize(srcImg, 9, 8);
-        //缩小后的灰度图
-        BufferedImage resideImgGrayImg = img2Gray(resideImg);
-        int[] imgGrayArray = img2Array(resideImgGrayImg);
-        String hash1 = aHash(imgGrayArray);
-        return hash1;
-    }
-
-    public static String aHash(int[] pixels) {
-        int average = average(pixels);
-        String result = binaryzation(pixels, average);
-        return result;
-    }
-
-    public static int average(int[] pixels) {
-        int sum = 0;
-        for (int i = 0; i < pixels.length; i++) {
-            sum += pixels[i];
-        }
-        int average = (Math.round(sum / pixels.length));
-        return average;
-    }
-
-    private static String binaryzation(int[] pixels, int average) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < pixels.length; i++) {
-            boolean d = compareGrey(pixels[i], average);
-            if (d) {
-                stringBuilder.append("1");
-            } else {
-                stringBuilder.append("0");
-            }
-        }
-        return stringBuilder.toString();
-    }
-
 
 }

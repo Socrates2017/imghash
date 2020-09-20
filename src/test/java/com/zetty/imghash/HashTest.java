@@ -1,7 +1,6 @@
 package com.zetty.imghash;
 
-import com.zrzhen.imghash.core.FileUtil;
-import com.zrzhen.imghash.core.ImgUtil;
+import com.zrzhen.imghash.core.*;
 import org.junit.Test;
 
 import java.awt.image.BufferedImage;
@@ -32,13 +31,13 @@ public class HashTest {
         int[] imgGrayArray = ImgUtil.img2Array(resideImgGrayImg);
         int[] resideImgArray = ImgUtil.img2Array(resideImg);
 
-        String aHash1 = ImgUtil.aHash(imgGrayArray);
-        String aHash2 = ImgUtil.aHash(resideImgArray);
+        String aHash1 = AHash.aHash(imgGrayArray);
+        String aHash2 = AHash.aHash(resideImgArray);
 
         System.out.println(aHash1);
         System.out.println(aHash2);
 
-        int hamming = ImgUtil.hammingDistance(aHash1, aHash2);
+        int hamming = HammingDistanceUtil.hammingDistance(aHash1, aHash2);
         System.out.println(hamming);
     }
 }

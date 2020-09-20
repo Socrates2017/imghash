@@ -40,7 +40,7 @@ public class ImgTest {
         String resideImgPath = FileUtil.rePath2AbPath("data/lenaResize.jpg");
 
         BufferedImage srcImg = ImgUtil.path2Img(path);
-        BufferedImage resideImg = ImgUtil.resize(srcImg, 900, 80);
+        BufferedImage resideImg = ImgUtil.resize(srcImg, 10, 10);
 
         //保存缩小后的图片
         ImgUtil.imgSave(resideImg, resideImgPath);
